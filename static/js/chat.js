@@ -1,26 +1,20 @@
 const botao = document.getElementById("btnEnviar");
-
 const input = document.getElementById("inputMensagem");
-
 const mensagens = document.getElementById("messages");
 
 botao.addEventListener("click", enviarMensagem);
 
-input.addEventListener("keypress", function(e){
-
-    if(e.key==="Enter"){
-
+input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
         enviarMensagem();
-
     }
-
 });
 
-function enviarMensagem(){
+async function enviarMensagem() {
 
     const texto = input.value.trim();
 
-    if(texto==="") return;
+    if (texto === "") return;
 
     mensagens.innerHTML += `
         <div class="message user">
@@ -28,16 +22,45 @@ function enviarMensagem(){
         </div>
     `;
 
-    input.value="";
-
-    mensagens.innerHTML += `
-        <div class="message bot">
-            Resposta simulada.<br><br>
-            Quando conectarmos ao Microsoft Foundry,
-            a resposta aparecerá aqui.
-        </div>
-    `;
+    input.value = "";
 
     mensagens.scrollTop = mensagens.scrollHeight;
+
+    try {
+
+        const resposta = await fetch("/api/chat", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                mensagem: texto
+            })
+
+        });
+
+        const dados = await resposta.json();
+
+        mensagens.innerHTML += `
+            <div class="message bot">
+                ${dados.resposta}
+            </div>
+        `;
+
+        mensagens.scrollTop = mensagens.scrollHeight;
+
+    } catch (erro) {
+
+        mensagens.innerHTML += `
+            <div class="message bot">
+                ❌ Erro ao conversar com o agente.
+            </div>
+        `;
+
+        console.error(erro);
+    }
 
 }
