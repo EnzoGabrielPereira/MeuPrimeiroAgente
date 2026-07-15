@@ -1,4 +1,10 @@
 const botaoSobre = document.getElementById("sobre");
+const botaoComecar = document.getElementsByClassName("btn-primary");
+
+botaoComecar.addEventListener("click", () => {
+   window.location.href = "chat.html";
+})
+
 
 botaoSobre.addEventListener("click", () => {
 
