@@ -44,11 +44,47 @@ async function enviarMensagem() {
 
         const dados = await resposta.json();
 
-        mensagens.innerHTML += `
-            <div class="message bot">
-                ${dados.resposta}
+        const respostaBot = dados.resposta;
+
+        // procura todos os links
+        const links = respostaBot.match(/https?:\/\/[^\s)]+/g) || [];
+
+        // remove os links do texto
+        let textoLimpo = respostaBot.replace(/https?:\/\/[^\s)]+/g, "");
+
+        // converte markdown em HTML
+        textoLimpo = marked.parse(textoLimpo);
+
+        let htmlLinks = "";
+
+    if (links.length > 0) {
+
+        htmlLinks += `
+            <div class="sources">
+            <strong>📚 Fontes</strong>
+    `;
+
+    links.forEach(link => {
+
+        htmlLinks += `
+            <div>
+                <a href="${link}" target="_blank">
+                    🔗 ${link}
+                </a>
             </div>
         `;
+
+    });
+
+        htmlLinks += `</div>`;
+    }
+
+    mensagens.innerHTML += `
+        <div class="message bot">
+            ${textoLimpo}
+            ${htmlLinks}
+        </div>
+    `;
 
         mensagens.scrollTop = mensagens.scrollHeight;
 

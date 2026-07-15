@@ -64,31 +64,41 @@ overflow:auto;
 
 .message{
 
-padding:15px;
+    max-width:75%;
 
-border-radius:10px;
+    width:fit-content;
 
-margin-bottom:15px;
+    padding:18px;
 
-max-width:70%;
+    border-radius:16px;
+
+    margin-bottom:20px;
+
+    white-space:pre-wrap;
+
+    word-break:break-word;
+
+    overflow-wrap:anywhere;
+
+    line-height:1.7;
 
 }
 
 .bot{
 
-background:#374151;
+    background:#374151;
 
-color:white;
+    color:white;
 
 }
 
 .user{
 
-background:#2563EB;
+    background:#2563EB;
 
-color:white;
+    color:white;
 
-margin-left:auto;
+    margin-left:auto;
 
 }
 
@@ -129,5 +139,56 @@ border-radius:10px;
 color:white;
 
 cursor:pointer;
+
+}
+
+.sources{
+
+    margin-top:15px;
+
+    padding-top:10px;
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+}
+
+.sources a{
+
+    display:block;
+
+    margin-top:10px;
+
+    color:#66aaff;
+
+    text-decoration:none;
+
+    word-break: break-all;
+
+    overflow-wrap:anywhere;
+
+}
+
+.sources a:hover{
+
+    color:white;
+
+    text-decoration:underline;
+
+}
+
+.message ul,
+.message ol{
+
+    padding-left:25px;
+
+    margin-top:10px;
+
+    margin-bottom:10px;
+
+}
+
+.message li{
+
+    margin-bottom:8px;
 
 }
