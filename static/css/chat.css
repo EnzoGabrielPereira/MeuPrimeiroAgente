@@ -1,4 +1,4 @@
-/* Imports Google Fonts */
+/* Importação de fontes do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
@@ -39,7 +39,7 @@ body {
     padding: 20px;
 }
 
-/* Chat Container Animation & Layout */
+/* Animação e Layout do Container de Chat */
 @keyframes chatOpen {
     from {
         opacity: 0;
@@ -65,7 +65,7 @@ body {
     animation: chatOpen 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Header */
+/* Cabeçalho */
 .chat-header {
     padding: 16px 24px;
     background-color: var(--bg-header);
@@ -154,7 +154,7 @@ body {
     transform: translateX(-2px);
 }
 
-/* Messages Area */
+/* Área de Mensagens */
 .messages {
     flex: 1;
     padding: 24px;
@@ -165,7 +165,7 @@ body {
     background-color: #0E131F;
 }
 
-/* Message Wrapper */
+/* Envoltório da Mensagem */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -192,7 +192,7 @@ body {
     align-items: flex-end;
 }
 
-/* Metadata */
+/* Metadados */
 .message-meta {
     display: flex;
     align-items: center;
@@ -207,7 +207,7 @@ body {
     flex-direction: row-reverse;
 }
 
-/* Avatar Circle */
+/* Círculo do Avatar */
 .avatar-circle {
     width: 28px;
     height: 28px;
@@ -240,7 +240,7 @@ body {
     color: var(--color-text-light);
 }
 
-/* Bubble styling */
+/* Estilização do Balão de Mensagem */
 .message-bubble {
     padding: 14px 20px;
     border-radius: 16px;
@@ -266,7 +266,7 @@ body {
     border-top-right-radius: 4px;
 }
 
-/* Markdown Tags inside bubble */
+/* Elementos Markdown dentro do Balão */
 .message-bubble h1, 
 .message-bubble h2, 
 .message-bubble h3,
@@ -326,7 +326,7 @@ body {
     vertical-align: super;
 }
 
-/* Code block styling */
+/* Estilização do Bloco de Código */
 .message-bubble pre {
     background: #0B0F17;
     padding: 12px 16px;
@@ -341,16 +341,16 @@ body {
     background: rgba(0, 0, 0, 0.25);
     padding: 2px 5px;
     border-radius: 4px;
-    color: #F472B6; /* Pink code tag */
+    color: #F472B6; /* Tag de código rosa */
 }
 .message-bubble pre code {
     background: none;
     padding: 0;
     border-radius: 0;
-    color: #38BDF8; /* Blue code tag */
+    color: #38BDF8; /* Tag de código azul */
 }
 
-/* Table styling */
+/* Estilização de Tabelas */
 .message-bubble table {
     width: 100%;
     border-collapse: collapse;
@@ -372,7 +372,7 @@ body {
     background-color: rgba(255, 255, 255, 0.015);
 }
 
-/* Sources container & cards */
+/* Container e Cards de Fontes */
 .sources-container {
     margin-top: 16px;
     padding-top: 16px;
@@ -433,7 +433,7 @@ body {
     text-overflow: ellipsis;
 }
 
-/* Typing Indicator styling */
+/* Estilização do Indicador de Digitando */
 .typing-bubble {
     display: flex;
     align-items: center;
@@ -467,7 +467,7 @@ body {
     100% { opacity: 0.2; }
 }
 
-/* Footer / Input area */
+/* Rodapé / Área do Campo de Texto */
 .chat-footer {
     display: flex;
     padding: 20px 24px;
@@ -512,7 +512,7 @@ textarea#inputMensagem::placeholder {
     color: var(--color-text-muted);
 }
 
-/* Send Button */
+/* Botão de Envio */
 #btnEnviar {
     background-color: var(--color-primary);
     color: #FFFFFF;
@@ -545,7 +545,7 @@ textarea#inputMensagem:disabled {
     cursor: not-allowed;
 }
 
-/* Scrollbar customization */
+/* Personalização da Barra de Rolagem */
 .messages::-webkit-scrollbar, 
 textarea#inputMensagem::-webkit-scrollbar {
     width: 6px;
@@ -567,7 +567,7 @@ textarea#inputMensagem::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Responsiveness */
+/* Responsividade / Telas Menores */
 @media (max-width: 768px) {
     body {
         padding: 0;

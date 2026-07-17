@@ -3,12 +3,12 @@ const modal = document.getElementById("modalSobre");
 const closeBtn = document.getElementById("closeModal");
 const fecharBtn = document.getElementById("btnFecharModal");
 
-// Open Modal
+// Abrir o Modal
 botaoSobre.addEventListener("click", () => {
     modal.classList.add("show");
 });
 
-// Close Modal functions
+// Funções para fechar o Modal
 function fecharModal() {
     modal.classList.remove("show");
 }
