@@ -1,37 +1,37 @@
-// Dom elements
+// Elementos do DOM
 const botao = document.getElementById("btnEnviar");
 const input = document.getElementById("inputMensagem");
 const mensagens = document.getElementById("messages");
 
-// Setup event listeners
+// Configura os ouvintes de eventos
 botao.addEventListener("click", enviarMensagem);
 
 input.addEventListener("keydown", (e) => {
-    // Enter sends message, Shift + Enter creates newline
+    // Enter envia a mensagem, Shift + Enter insere uma quebra de linha
     if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
         enviarMensagem();
     }
 });
 
-// Auto-expand textarea
+// Auto-expandir a área de texto
 input.addEventListener("input", () => {
     input.style.height = "auto";
     input.style.height = input.scrollHeight + "px";
 });
 
-// Global typing indicator tracking
+// Controle global do indicador de digitando
 let typingIndicator = null;
 
-// Initialize chat with greeting message
+// Inicializa o chat com a mensagem de boas-vindas
 window.addEventListener("DOMContentLoaded", () => {
-    // Add default initial message
+    // Adiciona a mensagem padrão inicial
     adicionarMensagem("bot", "Olá! Como posso ajudar?", obterHoraAtual());
     input.focus();
 });
 
 /**
- * Obtains current time in HH:MM format
+ * Obtém a hora atual formatada em HH:MM
  */
 function obterHoraAtual() {
     const agora = new Date();
@@ -41,7 +41,7 @@ function obterHoraAtual() {
 }
 
 /**
- * Auto-scroll to bottom of chat smoothly
+ * Rola a tela para o final do chat suavemente
  */
 function scrollToBottom() {
     mensagens.scrollTo({
@@ -51,7 +51,7 @@ function scrollToBottom() {
 }
 
 /**
- * Toggle UI state loading/normal
+ * Alterna o estado da interface entre carregamento e normal
  */
 function setCarregando(carregando) {
     botao.disabled = carregando;
@@ -60,14 +60,14 @@ function setCarregando(carregando) {
         exibirIndicadorDigitando();
     } else {
         removerIndicadorDigitando();
-        // Reset textarea height to default
+        // Redefine a altura do campo de texto para o padrão
         input.style.height = "auto";
         input.focus();
     }
 }
 
 /**
- * Displays "Mister está digitando..." indicator
+ * Exibe o indicador visual de que o "Mister está digitando..."
  */
 function exibirIndicadorDigitando() {
     if (typingIndicator) return;
@@ -116,7 +116,7 @@ function exibirIndicadorDigitando() {
 }
 
 /**
- * Removes typing indicator
+ * Remove o indicador de digitando
  */
 function removerIndicadorDigitando() {
     if (typingIndicator) {
@@ -126,8 +126,8 @@ function removerIndicadorDigitando() {
 }
 
 /**
- * Parses URLs out of response, replaces them with superscript citation notes,
- * and compiles the list of sources.
+ * Extrai URLs da resposta, substitui por índices numéricos (sobrescritos) 
+ * e compila a lista de fontes utilizadas.
  */
 function processarRespostaLinks(textoOriginal) {
     const links = [];
@@ -135,7 +135,7 @@ function processarRespostaLinks(textoOriginal) {
     let index = 1;
     let textoProcessado = textoOriginal;
 
-    // 1. Match Markdown Links [Title](URL)
+    // 1. Mapeia Links em Markdown [Título](URL)
     const markdownLinkRegex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
     textoProcessado = textoProcessado.replace(markdownLinkRegex, (match, text, url) => {
         if (!linkMap.has(url)) {
@@ -146,7 +146,7 @@ function processarRespostaLinks(textoOriginal) {
         return `${text}<sup>[${idx}]</sup>`;
     });
 
-    // 2. Match Raw URLs (excluding ones inside parentheses already handled)
+    // 2. Mapeia URLs simples/puras (desconsiderando as que já estão no formato acima)
     const rawUrlRegex = /(?<!\()https?:\/\/[^\s)]+/g;
     textoProcessado = textoProcessado.replace(rawUrlRegex, (url) => {
         if (!linkMap.has(url)) {
@@ -168,14 +168,14 @@ function processarRespostaLinks(textoOriginal) {
 }
 
 /**
- * Creates and appends a message element in the chat
+ * Cria e insere um elemento de mensagem no container do chat
  */
 function adicionarMensagem(remetente, texto, hora, fontes = []) {
     const wrapper = document.createElement("div");
     wrapper.classList.add("message-wrapper");
     wrapper.classList.add(remetente === "user" ? "user-message" : "bot-message");
 
-    // Meta section
+    // Seção de metadados (avatar, nome e horário)
     const meta = document.createElement("div");
     meta.classList.add("message-meta");
 
@@ -196,17 +196,17 @@ function adicionarMensagem(remetente, texto, hora, fontes = []) {
     meta.appendChild(nome);
     meta.appendChild(tempo);
 
-    // Bubble section
+    // Balão de texto da mensagem
     const bubble = document.createElement("div");
     bubble.classList.add("message-bubble");
 
     if (remetente === "user") {
         bubble.textContent = texto;
     } else {
-        // Safe markdown parsing using marked
+        // Conversão segura de markdown para HTML usando a biblioteca marked
         bubble.innerHTML = marked.parse(texto);
 
-        // Append Sources if present
+        // Insere as fontes de referência se existirem
         if (fontes.length > 0) {
             const sourcesContainer = document.createElement("div");
             sourcesContainer.classList.add("sources-container");
@@ -251,7 +251,7 @@ function adicionarMensagem(remetente, texto, hora, fontes = []) {
 }
 
 /**
- * Handles sending messages to the API and updating UI
+ * Gerencia o envio de mensagens para a API e atualizações na interface
  */
 async function enviarMensagem() {
     const texto = input.value.trim();
@@ -259,11 +259,11 @@ async function enviarMensagem() {
 
     const horaEnvio = obterHoraAtual();
 
-    // 1. Immediately append user's message
+    // 1. Insere imediatamente a mensagem do usuário na tela
     adicionarMensagem("user", texto, horaEnvio);
     input.value = "";
 
-    // 2. Set loading state (disables input and triggers typing indicator)
+    // 2. Define o estado de carregamento (desabilita inputs e mostra indicador "digitando")
     setCarregando(true);
 
     try {
@@ -284,13 +284,13 @@ async function enviarMensagem() {
         const dados = await resposta.json();
         const respostaBot = dados.resposta || "";
 
-        // Process response for links and markdown
+        // Processa as URLs e referências no texto da resposta
         const processed = processarRespostaLinks(respostaBot);
         
-        // Turn off loading (removes typing indicator)
+        // Finaliza o estado de carregamento (remove indicador "digitando")
         setCarregando(false);
 
-        // 3. Append bot response
+        // 3. Insere a resposta final da IA na tela
         adicionarMensagem("bot", processed.textoLimpo, obterHoraAtual(), processed.fontes);
 
     } catch (erro) {

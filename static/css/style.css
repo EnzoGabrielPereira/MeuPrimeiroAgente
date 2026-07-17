@@ -27,7 +27,7 @@ body {
     overflow: hidden;
 }
 
-/* Background overlay decorations */
+/* Elementos decorativos no fundo */
 body::before {
     content: '';
     position: absolute;
@@ -179,7 +179,7 @@ body::after {
     }
 }
 
-/* Modal Styling */
+/* Estilização do Modal */
 .modal {
     display: none;
     position: fixed;
