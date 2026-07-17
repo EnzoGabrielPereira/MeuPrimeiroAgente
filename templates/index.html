@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CopaIA</title>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
@@ -15,7 +14,7 @@
 
         <section class="hero">
 
-            <h1>⚽ CopaIA</h1>
+            <h1>⚽ MisterIA</h1>
 
             <p>
                 Seu assistente inteligente da Copa do Mundo 2026.
@@ -36,6 +35,17 @@
         </section>
 
     </main>
+
+    <!-- Modal -->
+    <div id="modalSobre" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+            <h2>⚽ Sobre o CopaIA</h2>
+            <p>Projeto de assistente virtual inteligente desenvolvido utilizando a plataforma <strong>Microsoft AI Foundry</strong>.</p>
+            <p>Este agente está preparado para responder com precisão dúvidas e curiosidades relacionadas à <strong>Copa do Mundo FIFA de 2026</strong>, como calendário de jogos, estádios, seleções participantes, regras e muito mais!</p>
+            <button class="btn-primary" id="btnFecharModal">Entendido</button>
+        </div>
+    </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
