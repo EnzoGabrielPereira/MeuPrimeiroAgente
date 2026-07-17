@@ -1,9 +1,18 @@
 const botaoSobre = document.getElementById("sobre");
+const modal = document.getElementById("modalSobre");
+const closeBtn = document.getElementById("closeModal");
+const fecharBtn = document.getElementById("btnFecharModal");
 
+// Open Modal
 botaoSobre.addEventListener("click", () => {
-
-    alert(`CopaIA Projeto desenvolvido utilizando Microsoft Foundry. 
-        Este agente responde perguntas relacionadas à Copa do Mundo de 2026.`
-    );
-
+    modal.classList.add("show");
 });
+
+// Close Modal functions
+function fecharModal() {
+    modal.classList.remove("show");
+}
+
+closeBtn.addEventListener("click", fecharModal);
+fecharBtn.addEventListener("click", fecharModal);
+
